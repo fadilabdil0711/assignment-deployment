@@ -9,11 +9,12 @@ const Photos = () => {
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [deleteItem, setDeleteItem] = useState('')
+  const [refresh, setRefresh] = useState(false)
 
   const deletePhoto = (id) => {
     fetch(`https://gallery-app-server.vercel.app/photos/${id}`,{ method: 'DELETE' })
     .then(() => {
+      setRefresh(true)
       setPhotos(photos.filter(photo => photo.id !==id ))
     })
   };
@@ -43,7 +44,7 @@ const Photos = () => {
       }else{
         url("https://gallery-app-server.vercel.app/photos?_sort=id&&_order=desc")}
     }
-  }, [sort, submited, deleteItem]);
+  }, [sort, submited, refresh]);
 
   useEffect(() => {
     setLoading(true);
