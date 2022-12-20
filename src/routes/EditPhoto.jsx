@@ -33,9 +33,7 @@ const EditPhoto = () => {
 
   useEffect(() => {
     setLoading(true);
-    setLoading(true);
-    setLoading(true);
-    fetch(`http://localhost:3001/photos/${id}`)
+    fetch(`https://gallery-app-server.vercel.app/photos/${id}`)
     .then((response) => response.json())
     .then((json) => {
       setImageUrl(json.imageUrl)
